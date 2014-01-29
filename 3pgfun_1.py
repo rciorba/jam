@@ -4,7 +4,7 @@ import sys
 from blist import sortedlist
 
 
-def anagrams(lines):
+def not_really_anagrams(lines):
     data = defaultdict(sortedlist)
     for line in lines:
         word = line.strip()
@@ -13,6 +13,16 @@ def anagrams(lines):
             print anagram, word
         else:
             data[len(word)].add(word)
+
+
+def anagrams(lines):
+    data = defaultdict(list)
+    for line in lines:
+        word = line.strip()
+        key = "".join(sorted(word))
+        data[key].append(word)
+    for words in data.itervalues():
+        print ", ".join(words)
 
 
 if __name__ == "__main__":
